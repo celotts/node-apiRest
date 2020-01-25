@@ -1,54 +1,10 @@
 'use strict'
 
-const express = require('express');
-
-const bodyParser = require('body-parser');
-
 const mongoose = require('mongoose');
-
-const Product = require('./models/product.ts')
+const app = require('./app');
 
 const PORT_HTTP = process.env.PORT || 3000;
 const MONGO_URI = process.env.MONGO_URI || 27017;
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json())
-
-app.get('/api/product', (req, res) => {
-
-
-})
-
-app.get('/api/product/:productId', (req, res) => {
-
-})
-
-app.post('/api/product', (req, res) => {
-    console.log(req.body);
-    let product = new Product();
-    product.name = req.body.name;
-    product.picture = req.body.picture;
-    product.price = req.body.price;
-    product.category = req.body.category;
-    product.description = req.body.description;
-
-    product.save((err, productStore) => {
-        if (err) {
-            res.status(500).send({ message: `Error al salvar en la base de datos ${err}` })
-        }
-
-        res.status(200).send({ product: productStore });
-    })
-})
-
-app.put('/api/product/:productId', (req, res) => {
-
-})
-
-app.delete('/api/product/:productId', (req, res) => {
-
-})
 
 mongoose.connect(`mongodb://localhost:${MONGO_URI}/shop`, {
     useUnifiedTopology: true,
