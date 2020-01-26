@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/celotts/node-apiRest#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parse": "^0.1.0",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "mongoose": "^5.8.7"
   },
