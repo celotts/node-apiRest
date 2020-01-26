@@ -3,21 +3,20 @@
 const mongoose = require('mongoose');
 const app = require('./app');
 
-const PORT_HTTP = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI || 27017;
+const config = require('./config');
 
-mongoose.connect(`mongodb://localhost:${MONGO_URI}/shop`, {
+mongoose.connect(config.db, {
     useUnifiedTopology: true,
     useNewUrlParser: true,
 }).then(() => {
-    console.log(`DB Connected! PORT: ${MONGO_URI}`);
+    console.log(`DB Connected! PORT: ${config.db}`);
 
-    app.listen(PORT_HTTP, () => {
-        console.log(`Api rest corriendo en http://localhost:${PORT_HTTP}`);
+    app.listen(config.port, () => {
+        console.log(`Api rest corriendo en http://localhost:${config.port}`);
     });
 
 }).catch(err => {
-    console.log(`Error conectado la BD en el puerto: ${MONGO_URI} Detalle: ${err}`);
+    console.log(`Error conectado la BD en el puerto: ${config.port} Detalle: ${err}`);
 
 });
 
